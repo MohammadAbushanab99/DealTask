@@ -1,0 +1,10 @@
+com\task\test\DealService$DealValidationException.class
+com\task\test\DealResponse.class
+com\task\test\TestClass.class
+com\task\test\DealService.class
+com\task\test\DealController.class
+com\task\test\AmountValidationService.class
+com\task\test\Deal.class
+com\task\test\DealRepository.class
+com\task\test\DealValidationService.class
+com\task\test\CurrencyValidationService.class
