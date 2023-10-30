@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/deals")
@@ -14,12 +16,17 @@ public class DealController {
     @Autowired
     private DealService dealService;
 
+    private static final Logger logger = LoggerFactory.getLogger(DealController.class);
+
+
     @PostMapping
     public ResponseEntity<DealResponse> createDeal(@RequestBody Deal deal) {
         DealResponse response = dealService.createDeal(deal);
         if (response.getStatus().equals("Deal created successfully")) {
+            logger.info("Deal created successfully. Request: {}", deal);
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } else {
+            logger.error("Failed to create deal. Request: {}. Error: {}", deal, response.getStatus());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
