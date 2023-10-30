@@ -2,6 +2,8 @@ package com.task.test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class DealService {
@@ -11,12 +13,15 @@ public class DealService {
     @Autowired
     private DealValidationService dealValidationService;
 
+    private static final Logger logger = LoggerFactory.getLogger(DealService.class);
+
     public DealResponse createDeal(Deal deal) {
         try {
             validateDeal(deal);
             dealRepository.createDeal(deal);
             return new DealResponse("Deal created successfully", deal);
         } catch (DealValidationException e) {
+            logger.error("Deal validation failed: {}", e.getMessage());
             return new DealResponse(e.getMessage(),null);
         }
     }

@@ -8,6 +8,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class DealValidationService {
@@ -19,6 +21,9 @@ public class DealValidationService {
 
     @Autowired
     private AmountValidationService amountValidationService;
+
+    private static final Logger logger = LoggerFactory.getLogger(DealValidationService.class);
+
 
     public boolean isValidDealUniqueId(String dealUniqueId) {
         if(!dealUniqueId.isEmpty()) {
@@ -45,6 +50,7 @@ public class DealValidationService {
                 LocalDateTime parsedDateTime = LocalDateTime.parse(dealTimestamp, DATE_TIME_FORMATTER);
                 return true;
             } catch (DateTimeParseException e) {
+                logger.error("Invalid timestamp format: {}", e.getMessage());
                 return false;
             }
         }

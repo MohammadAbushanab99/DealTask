@@ -1,6 +1,8 @@
 package com.task.test;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,6 +10,9 @@ public class AmountValidationService {
     private static final double MIN_AMOUNT = 0.0;
     private static final double MAX_AMOUNT = 1000000.0;
     private static final int MAX_DECIMAL_PLACES = 2;
+
+    private static final Logger logger = LoggerFactory.getLogger(AmountValidationService.class);
+
 
     public boolean isValidAmount(String dealAmount) {
         if (isValidNumericFormat(dealAmount)) {
@@ -19,6 +24,7 @@ public class AmountValidationService {
                     return decimalPlaces <= MAX_DECIMAL_PLACES;
                 }
             } catch (NumberFormatException e) {
+                logger.error("Invalid amount format: {}", e.getMessage());
                 return false;
             }
         }
