@@ -9,6 +9,10 @@ public class DealResponse {
         this.deal = deal;
     }
 
+    public DealResponse() {
+        // No-argument constructor
+    }
+
     public String getStatus() {
         return status;
     }

@@ -1,4 +1,6 @@
-curl -X POST http://localhost:8080/deals -H "Content-Type: application/json" -d "{\"dealUniqueId\":\"1234567890\",\"fromCurrencyISOCode\":\"USD\",\"toCurrencyISOCode\":\"EUR\",\"dealTimestamp\":\"2023-10-29T14:30:00\",\"dealAmountInOrderingCurrency\":\"1000.50\"}"
+curl -X POST http://localhost:8080/deals -H "Content-Type: application/json" -d
+
+"{\"dealUniqueId\":\"1234567890\",\"fromCurrencyISOCode\":\"USD\",\"toCurrencyISOCode\":\"EUR\",\"dealTimestamp\":\"2023-10-29T14:30:00\",\"dealAmountInOrderingCurrency\":\"1000.50\"}"
 CREATE TABLE deals (
     dealUniqueId VARCHAR(255) PRIMARY KEY,
     fromCurrencyISOCode VARCHAR(3),
