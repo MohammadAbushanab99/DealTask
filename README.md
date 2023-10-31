@@ -29,12 +29,13 @@ Before you begin, ensure you have met the following requirements:
 
 ## Usage
 1. Run the application:
+   - Make sure you have Docker set up.
    - docker-compose up -d
      
 ## Deployment
 - For local development, you can deploy the application on your local machine.
   
-  1.Make sure you have a Docker set up.
+  1.Make sure you have a local MySQL database set up.
   
   2.Update src/main/resources/application.properties with your database configuration.
   
