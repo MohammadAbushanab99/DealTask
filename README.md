@@ -34,5 +34,7 @@ Before you begin, ensure you have met the following requirements:
 ## Deployment
 - For local development, you can deploy the application on your local machine.
   1.Make sure you have a Docker set up.
+  
   2.Update src/main/resources/application.properties with your database configuration.
+  
   3.Build and run the application.
