@@ -36,6 +36,6 @@ Before you begin, ensure you have met the following requirements:
   
   1.Make sure you have a Docker set up.
   
-  2.Update src/main/resources/application.properties with your database configuration and update docker-compose.
+  2.Update src/main/resources/application.properties with your database configuration.
   
   3.Build and run the application.
