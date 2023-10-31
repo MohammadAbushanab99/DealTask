@@ -20,10 +20,8 @@ public class DealControllerTest {
 
     @Test
     public void givenValidRequest_whenCallingTheController_thenShouldReturnDealCreatedSuccessfully() throws Exception {
-        String dealJson = "{ \"dealUniqueId\": \"9999999978\", \"fromCurrencyISOCode\": \"USD\", \"toCurrencyISOCode\": \"EUR\", \"dealTimestamp\": \"2023-10-29T14:30:00\", \"dealAmountInOrderingCurrency\": 1000.50 }";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Deal deal = objectMapper.readValue(dealJson, Deal.class);
+        Deal deal = new Deal("9999997678", "USD", "EUR", "2023-10-29T14:30:00", "1000.50");
 
         DealResponse response = dealService.createDeal(deal);
 
@@ -37,11 +35,8 @@ public class DealControllerTest {
 
     @Test
     public void givenInValidUniqueId_whenCallingTheController_thenShouldReturnException() throws Exception {
-        String dealJson = "{ \"dealUniqueId\": \"12345\", \"fromCurrencyISOCode\": \"USD\", \"toCurrencyISOCode\": \"EUR\", \"dealTimestamp\": \"2023-10-29T14:30:00\", \"dealAmountInOrderingCurrency\": 1000.50 }";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Deal deal = objectMapper.readValue(dealJson, Deal.class);
-
+        Deal deal = new Deal("12345", "USD", "EUR", "2023-10-29T14:30:00", "1000.50");
         DealResponse response = dealService.createDeal(deal);
 
         String status = response.getStatus();
@@ -53,11 +48,8 @@ public class DealControllerTest {
 
     @Test
     public void givenInValidFromCurrency_whenCallingTheController_thenShouldReturnException() throws Exception {
-        String dealJson = "{ \"dealUniqueId\": \"9999999999\", \"fromCurrencyISOCode\": \"INVALID\", \"toCurrencyISOCode\": \"EUR\", \"dealTimestamp\": \"2023-10-29T14:30:00\", \"dealAmountInOrderingCurrency\": 1000.50 }";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Deal deal = objectMapper.readValue(dealJson, Deal.class);
-
+        Deal deal = new Deal("1111111111", "INVALID", "EUR", "2023-10-29T14:30:00", "1000.50");
         DealResponse response = dealService.createDeal(deal);
 
         String status = response.getStatus();
@@ -69,11 +61,8 @@ public class DealControllerTest {
 
     @Test
     public void givenInValidToCurrency_whenCallingTheController_thenShouldReturnException() throws Exception {
-        String dealJson = "{ \"dealUniqueId\": \"9999999999\", \"fromCurrencyISOCode\": \"EUR\", \"toCurrencyISOCode\": \"INVALID\", \"dealTimestamp\": \"2023-10-29T14:30:00\", \"dealAmountInOrderingCurrency\": 1000.50 }";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Deal deal = objectMapper.readValue(dealJson, Deal.class);
-
+        Deal deal = new Deal("1111111111", "USD", "INVALID", "2023-10-29T14:30:00", "1000.50");
         DealResponse response = dealService.createDeal(deal);
 
         String status = response.getStatus();
@@ -86,11 +75,8 @@ public class DealControllerTest {
 
     @Test
     public void givenInValidTimestamp_whenCallingTheController_thenShouldReturnException() throws Exception {
-        String dealJson = "{ \"dealUniqueId\": \"9999999999\", \"fromCurrencyISOCode\": \"EUR\", \"toCurrencyISOCode\": \"USD\", \"dealTimestamp\": \"InvalidTimestamp\", \"dealAmountInOrderingCurrency\": 1000.50 }";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Deal deal = objectMapper.readValue(dealJson, Deal.class);
-
+        Deal deal = new Deal("1111111111", "USD", "EUR", "InvalidTimestamp", "1000.50");
         DealResponse response = dealService.createDeal(deal);
 
         String status = response.getStatus();
@@ -102,10 +88,8 @@ public class DealControllerTest {
 
     @Test
     public void givenInValidAmount_whenCallingTheController_thenShouldReturnException() throws Exception {
-        String dealJson = "{ \"dealUniqueId\": \"9999999999\", \"fromCurrencyISOCode\": \"EUR\", \"toCurrencyISOCode\": \"USD\", \"dealTimestamp\": \"2023-10-29T14:30:00\", \"dealAmountInOrderingCurrency\": 10 }";
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        Deal deal = objectMapper.readValue(dealJson, Deal.class);
+        Deal deal = new Deal("1111111111", "USD", "EUR", "2023-10-29T14:30:00", "InvalidAmount");
 
         DealResponse response = dealService.createDeal(deal);
 

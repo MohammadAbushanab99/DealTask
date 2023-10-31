@@ -12,7 +12,7 @@ public class DealResponse {
     }
 
     public DealResponse() {
-        // No-argument constructor
+
     }
 
     public String getStatus() {
